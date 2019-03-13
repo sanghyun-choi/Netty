@@ -38,4 +38,9 @@ write 메소드는 실제 ChannelFuture를 반환하여 void형태를 반환하�
 Future : 다른 context를 실행 후 결과를 바로 리턴받아 해당 결과를 get할때까지 sink하여 내 위주로 내가 데이터 가져오는 것이 가능
 Promise : 다른 context를 실행하는 게 아니라, 실제 결과를 돌려주는 타이밍을 본인이 결정(CallbackListener??)
 
+5. clinent와 server
+두개 모두 EventLoop기반으로 동작하므로 코드가 
+
+
 전체 내용 참조(https://www.slideshare.net/JangHoon1/netty-92835335)
+
