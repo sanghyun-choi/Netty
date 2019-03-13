@@ -1,4 +1,4 @@
-# Netty-
+# Netty
 Netty Data Flow 흐름 이해
 
 Netty는 두개의 EventLoopGroup을 가지며 다음과 같은 실행 Flow를 가진다.(기본 셋팅으로 설정 시)
