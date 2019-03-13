@@ -12,10 +12,10 @@ childGroup은 클라이언트의 데이터 송,수신을 담당한다.
 여러 EventLoop(Loop당 Thread 1개)로 클라이언트 Channel은 생명 주기동안 하나의 Loop에만 등록된다.
 # EventLoopGroup - Flow
 클라이언트로 부터 데이터가 수신되면 해당 channel의 schedule이 시작된다.
-이 때, 처음 connection을 맺을 때 childGroup의 등록된 EventLoopGroup의 스레드와 동일하면 scheduledTaskQueue에 add하여 작업을 실행 할 수 있다.
-(scheduledTaskQueue에 있는 task는 taskQueue로 자동으로 이동된다. 실질적인 작업은 taskQueue에 있는 작업을 꺼내어 실행한다.)
-만약, 처음 등록되지 않은 스레드로 부터 실행이 되었다면 scheduledTaskQueue.add하는 행위에 신규 Task를 생성한 후, 등록된 EventLoop의 스레드의 taskQueue로 전달한다.
-(전달 행위는 startThread()를 통해 등록된 Thread(EventLoopGroup)를 실행하여 taskQueue에 add 한다.)
+이 때, 처음 connection을 맺을 때 childGroup의 등록된 EventLoop(Thread)의 스레드와 동일하면 scheduledTaskQueue.add하여 작업을 실행 할 수 있다.
+(scheduledTaskQueue에 저장된 task는 taskQueue로 자동으로 이동된다. 실질적인 작업은 taskQueue에 있는 작업을 꺼내어 실행한다.)
+만약, 처음 등록되지 않은 스레드로 부터 실행이 되었다면 scheduledTaskQueue.add하는 행위의 신규 Task를 생성한 후, 등록된 EventLoop의 스레드의 taskQueue로 전달한다.
+(전달 행위는 startThread()를 통해 등록된 Thread(EventLoopGroup)를 실행하여 taskQueue.add 한다.)
 <br/>
 # handler 적용
 .handler는 boosGroup에 대한 이벤트 핸들러 등록으로 connection 생성시에 실행된다.
